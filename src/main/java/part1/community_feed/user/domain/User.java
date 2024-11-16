@@ -1,22 +1,37 @@
 package part1.community_feed.user.domain;
 
 import java.util.Objects;
+import part1.community_feed.common.domain.PositiveIntegerCounter;
 
 public class User {
+    // 1. 유저의 정보를 입력 받음
+    // 2. 유저의 유효성 정보를 확인 (이름이 빈 값인지)
+    // 3. 유저 정보 저장
+
+    // ---
+
+    // 1. 팔로우 유저, 팔로우 당하는 유저 입력을 받고 불러오기 : Controller, Service
+    // 2. 팔로우 여부 확인하기 : Repository
+    //  - 팔로우 상태라면, 에러 반환하기 : Service
+    // 3. 자기 자신이라면 에러를 반환하기 : Domain
+    // 4. 팔로우 유저 카운트 변경 : Domain
+    // 5. 팔로잉 유저 카운트 변경 : Domain
+    // 6. 팔로우 여부 저장 및 유저 변경 사항 저장 // Repository
+
     private final Long id;
 //    private final String name;
 //    private final String profileImageUrl;
     private final UserInfo info;
-    private final UserRelationCounter followingCount;
-    private final UserRelationCounter followerCount;
+    private final PositiveIntegerCounter followingCount;
+    private final PositiveIntegerCounter followerCount;
 
     public User(Long id, UserInfo userInfo) {
         this.id = id;
 //        this.name = name;
 //        this.profileImageUrl = profileImageUrl;
         this.info = userInfo;
-        this.followingCount = new UserRelationCounter();
-        this.followerCount = new UserRelationCounter();
+        this.followingCount = new PositiveIntegerCounter();
+        this.followerCount = new PositiveIntegerCounter();
     }
 
     public void follow(User targetUser) {
@@ -66,5 +81,7 @@ public class User {
         return Objects.hashCode(id);
     }
 
-
+    public Long getId() {
+        return id;
+    }
 }

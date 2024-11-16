@@ -1,9 +1,9 @@
-package part1.community_feed.user.domain;
+package part1.community_feed.common.domain;
 
-public class UserRelationCounter {
+public class PositiveIntegerCounter {
     private int count;
 
-    public UserRelationCounter() {
+    public PositiveIntegerCounter() {
         this.count = 0;
     }
 
